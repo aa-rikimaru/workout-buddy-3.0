@@ -9,7 +9,14 @@ class ProgramModApp extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchExercises();
+    console.log('componentDidMount(): ' + this.state.exercises);
+  }
+
   render() {
+    console.log('render(): ' + this.state.exercises);
+
     return (
       <div className="container-fluid">
         <div className="row">
@@ -51,4 +58,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(ProgramModApp);
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramModApp);
