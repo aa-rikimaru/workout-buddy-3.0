@@ -6,7 +6,7 @@ import Input from '../FormComponents/Input.jsx';
 import TextArea from '../FormComponents/TextArea.jsx';
 import ActionButton from '../Buttons/ActionButton.jsx';
 
-import ProgramModApp from '../ProgramModApp.jsx'
+import ProgramModApp from '../../ProgramModApp.jsx'
 
 const FormModal = (props) => {
   const programLevels = ['Beginner', 'Intermediate', 'Advanced'];

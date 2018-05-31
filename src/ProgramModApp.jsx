@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchExercises } from './actions/index';
 
 class ProgramModApp extends Component {
   constructor(props) {
@@ -38,4 +41,14 @@ ProgramModApp.defaultProps = {
   }
 };
 
-export default ProgramModApp;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchExercises }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    exercises: state.exercises
+  }
+}
+
+export default connect(mapStateToProps)(ProgramModApp);
