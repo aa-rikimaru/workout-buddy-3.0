@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import LinkButton from './components/Buttons/LinkButton.jsx';
 import ActionButton from './components/Buttons/ActionButton.jsx';
 import ProgramFormModal from './components/Modals/ProgramFormModal.jsx';
@@ -19,8 +20,8 @@ class WorkoutApp extends React.Component {
     };
   };
 
-  componentDidMount() {
-    /*fetch('http://localhost:3000/api/users/1')
+  fetchUser() {
+    fetch('http://localhost:3000/api/users/1')
       .then(res => res.json())
       .then(
         (result) => {
@@ -34,8 +35,8 @@ class WorkoutApp extends React.Component {
             isLoaded:true,
             error
           });
-        });*/
-  };
+        });
+  }
 
   render() {
     const { error, isLoaded, user } = this.state;
