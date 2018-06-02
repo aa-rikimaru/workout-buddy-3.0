@@ -3,7 +3,9 @@ import { FETCH_EXERCISES } from '../actions';
 export default function(state = {}, action) {
   switch (action.type) {
     case FETCH_EXERCISES:
-      return [ action.payload.data ];
+      //return state.concat([action.payload.data]);
+      //return [ action.payload.data, ...state];
+      return action.payload.data.results;
     default:
       return state;
   }

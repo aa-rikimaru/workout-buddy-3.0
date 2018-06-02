@@ -7,16 +7,21 @@ import { fetchExercises } from './actions/index';
 class ProgramModApp extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      list : []
+    }
   }
 
   componentDidMount() {
-    this.props.fetchExercises();
-    console.log('componentDidMount(): ' + this.state.exercises);
+    let exercises =  this.props.fetchExercises()
+    console.log('Fetching exercises ...' + exercises);
   }
 
   render() {
-    console.log('render(): ' + this.state.exercises);
-
+    console.log('rendering...');
+    console.log(this.props.exercises);
+    if (!this.props.exercises) console.log(this.props.exercises);
     return (
       <div className="container-fluid">
         <div className="row">
@@ -35,10 +40,10 @@ class ProgramModApp extends Component {
 }
 
 ProgramModApp.propTypes = {
-  program : {
+  program : PropTypes.shape({
     name: PropTypes.string,
     description: PropTypes.string,
-  }
+  }),
 };
 
 ProgramModApp.defaultProps = {
@@ -53,6 +58,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     exercises: state.exercises
   }
