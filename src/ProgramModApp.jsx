@@ -14,12 +14,12 @@ class ProgramModApp extends Component {
   }
 
   componentDidMount() {
-    let exercises =  this.props.fetchExercises()
+    let exercises =  this.props.fetchExercises();
     console.log('Fetching exercises ...' + exercises);
   }
 
   render() {
-    console.log('rendering...');
+    console.log('Rendering...');
     console.log(this.props.exercises);
     if (!this.props.exercises) console.log(this.props.exercises);
     return (
@@ -58,7 +58,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     exercises: state.exercises
   }

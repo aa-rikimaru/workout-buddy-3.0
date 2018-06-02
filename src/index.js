@@ -4,6 +4,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import ReduxPromise from 'redux-promise';
+import Logger from 'redux-logger';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -12,7 +13,7 @@ import WorkoutApp from './WorkoutApp';
 import ProgramModApp from './ProgramModApp';
 import reducers from './reducers';
 
-const createStoreWithMiddleWare = applyMiddleware(ReduxPromise)(createStore);
+const createStoreWithMiddleWare = applyMiddleware(ReduxPromise, Logger)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleWare(reducers)}>
