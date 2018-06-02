@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import LinkButton from './components/Buttons/LinkButton.jsx';
-import ActionButton from './components/Buttons/ActionButton.jsx';
 import ProgramFormModal from './components/Modals/ProgramFormModal.jsx';
 
 class WorkoutApp extends React.Component {

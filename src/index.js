@@ -4,7 +4,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import ReduxPromise from 'redux-promise';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
@@ -18,8 +18,11 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleWare(reducers)}>
     <BrowserRouter>
       <div>
-        <Route path="/profile" component={WorkoutApp} />
-        <Route path="/program-mod" component={ProgramModApp} />
+        <Switch>
+          <Route path="/profile" component={WorkoutApp} />
+          <Route path="/program-mod" component={ProgramModApp} />
+          <Route path="/" component={WorkoutApp} />
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>,
