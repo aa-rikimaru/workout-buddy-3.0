@@ -4,14 +4,38 @@ export const FETCH_EXERCISES = 'fetch_exercises';
 
 const ROOT_URL = 'https://wger.de/api/v2';
 
+var requestList = [];
+
 export function fetchExercises() {
-  const request = axios.get(`${ROOT_URL}/exercise`);
+  const request = axios.get(`${ROOT_URL}/exercise`)
+    .then((res) => {
+      requestList.push(res.data);
+      return continueFetch(res.data.next);
+    });
 
   return {
     type: 'FETCH_EXERCISES',
-    payload: request
+    payload: requestList
   };
 }
+
+const continueFetch = (url) => {
+  if (url) {
+    let request = axios.get(url)
+      .then((res) => {
+        console.log(res.data);
+        requestList.push(request);
+        continueFetch(res.data.next);
+      });
+  } else {
+    return {
+      type: 'FETCH_EXERCISES',
+      payload: requestList
+    }
+  }
+}
+
+
 
 export function continueFetchExercises(url) {
   const request = axios.get(url);

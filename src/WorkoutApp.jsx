@@ -36,8 +36,33 @@ class WorkoutApp extends React.Component {
         });
   }
 
+  fetchExercises() {
+    let ROOT_URL = 'https://wger.de/api/v2';
+    let exerciseList = [];
+
+    const fetchMoreExercise = (url) => {
+      fetch(url)
+        .then(response => response.json())
+        .then(
+          result => {
+            exerciseList.concat(result.results);
+            console.log(result.results);
+            if (result.next)
+              fetchMoreExercise(result.next);
+          },
+          error => {
+            alert(error);
+          }
+        );
+    }
+
+    fetchMoreExercise(`${ROOT_URL}/exercise`);
+  }
+
   render() {
     const { error, isLoaded, user } = this.state;
+
+    this.fetchExercises();
 
     if (error) {
       return <div>Error: {error.message}</div>;
