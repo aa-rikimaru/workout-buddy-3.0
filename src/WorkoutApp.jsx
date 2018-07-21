@@ -7,6 +7,7 @@ class WorkoutApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      exerciseList: [],
       error: null,
       isLoaded: true,
       user: {
@@ -17,6 +18,11 @@ class WorkoutApp extends React.Component {
       },
     };
   };
+
+  componentDidMount() {
+    const FETCH_EXERCISE_URL = 'https://wger.de/api/v2/exercise';
+    this.fetchExercises(FETCH_EXERCISE_URL);
+  }
 
   fetchUser() {
     fetch('http://localhost:3000/api/users/1')
@@ -30,39 +36,34 @@ class WorkoutApp extends React.Component {
         },
         (error) => {
           this.setState({
-            isLoaded:true,
+            isLoaded: true,
             error
           });
         });
   }
 
-  fetchExercises() {
-    let ROOT_URL = 'https://wger.de/api/v2';
-    let exerciseList = [];
+  fetchExercises(url) {
+    var exerciseList = [];
 
-    const fetchMoreExercise = (url) => {
-      fetch(url)
-        .then(response => response.json())
-        .then(
-          result => {
-            exerciseList.concat(result.results);
-            console.log(result.results);
-            if (result.next)
-              fetchMoreExercise(result.next);
-          },
-          error => {
-            alert(error);
-          }
-        );
-    }
+    if (!url) return exerciseList;
 
-    fetchMoreExercise(`${ROOT_URL}/exercise`);
+    fetch(url)
+      .then(response => response.json())
+      .then(
+        result => {
+          this.fetchExercises(result.next);
+          this.setState({
+            exerciseList: this.state.exerciseList.concat(result.results)
+          });
+        },
+        error => {
+          alert(error);
+        }
+      );
   }
 
   render() {
     const { error, isLoaded, user } = this.state;
-
-    this.fetchExercises();
 
     if (error) {
       return <div>Error: {error.message}</div>;
