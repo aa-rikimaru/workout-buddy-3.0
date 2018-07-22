@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ProgramMenu from './components/Menus/ProgramMenu.jsx';
+import ProgramWorkspace from './containers/ProgramWorkspace.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -36,8 +37,8 @@ class ProgramModApp extends Component {
           <div className="col-3">
             <ProgramMenu />
           </div>
-          <div className="col-9 program-mod-content" >
-            <p>{this.props.program.description}</p>
+          <div className="col-9" >
+            <ProgramWorkspace />
           </div>
         </div>
       </div>
