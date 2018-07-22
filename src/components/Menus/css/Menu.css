@@ -1,0 +1,17 @@
+.side-menu {
+	background-color: #F8B195;
+
+	border-radius: 5px;
+	padding: 5px;
+	margin: 0 10px 0 0;
+}
+
+.menu-item:hover {
+	color: #FFF;
+	background-color: #C06C84;
+}
+
+.menu-item {
+	padding: 2.5px;
+	border-radius: 5px;
+}

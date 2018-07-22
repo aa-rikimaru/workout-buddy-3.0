@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import ProgramMenu from './components/Menus/ProgramMenu.jsx';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchExercises } from './actions/index';
@@ -25,10 +28,13 @@ class ProgramModApp extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <h2>Program Name: {this.props.program.name}</h2>
+          <div className="col-12">
+            <h2>Program Name: {this.props.program.name}</h2>
+          </div>
         </div>
         <div className="row">
-          <div className="col-3 toolbar" >
+          <div className="col-3">
+            <ProgramMenu />
           </div>
           <div className="col-9 program-mod-content" >
             <p>{this.props.program.description}</p>
