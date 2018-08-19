@@ -15,15 +15,18 @@ class ProgramModApp extends Component {
     this.state = {
       exercises: []
     }
+
+    this.openMenu = this.openMenu.bind(this);
   }
 
   componentDidMount() {
-    let exercises = this.props.fetchExercises();
-    console.log('Fetching exercises ...' + exercises);
-    console.log(this.state);
+    let exercises = this.props.fetchExercises().payload;
+    // This is equivalent to: this.setSTate({ exercises: exercise })
+    this.setState({ exercises });
   }
 
   openMenu() {
+    console.log(this.state);
   }
 
   render() {
