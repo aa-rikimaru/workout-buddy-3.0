@@ -13,18 +13,20 @@ class ProgramModApp extends Component {
     super(props);
 
     this.state = {
-      list : []
+      exercises: []
     }
   }
 
   componentDidMount() {
-    let exercises =  this.props.fetchExercises();
+    let exercises = this.props.fetchExercises();
     console.log('Fetching exercises ...' + exercises);
+    console.log(this.state);
+  }
+
+  openMenu() {
   }
 
   render() {
-    console.log('Rendering...');
-    console.log(this.props.exercises);
     if (!this.props.exercises) console.log(this.props.exercises);
     return (
       <div className="container-fluid">
@@ -34,13 +36,11 @@ class ProgramModApp extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-3">
-            <ProgramMenu />
-          </div>
-          <div className="col-9" >
-            <ProgramWorkspace />
+          <div className="col-12" >
+            <ProgramWorkspace openMenuAction={this.openMenu}/>
           </div>
         </div>
+        <ProgramMenu />
       </div>
     );
   }
@@ -65,8 +65,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  console.log('mapStateToProps: ', state);
   return {
-    exercises: state.exercises
+      exercises: state.exercises
   }
 }
 
