@@ -21,12 +21,22 @@ class ProgramModApp extends Component {
 
   componentDidMount() {
     let exercises = this.props.fetchExercises().payload;
-    // This is equivalent to: this.setSTate({ exercises: exercise })
+    // This is equivalent to: this.setState({ exercises: exercise })
     this.setState({ exercises });
   }
 
-  openMenu() {
-    console.log(this.state);
+  openMenu(e) {
+    let programMenu = document.getElementById('program-menu');
+
+    programMenu.style.left = e.clientX + 'px';
+    programMenu.style.top = e.clientY + 'px';
+    programMenu.style.display = 'block';
+
+    window.onclick = (event) => {
+      if (event.target != programMenu ) {
+        programMenu.style.display = 'none';
+      }
+    }
   }
 
   render() {

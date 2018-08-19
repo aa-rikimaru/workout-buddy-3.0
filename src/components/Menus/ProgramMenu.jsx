@@ -4,7 +4,7 @@ import './css/Menu.css';
 
 const ProgramMenu = (props) => {
   return (
-    <div className="program-menu">
+    <div id="program-menu" className="popup-menu">
         <div className="menu-item d-flex align-items-center">
           <i className="material-icons">add</i>Create
         </div>

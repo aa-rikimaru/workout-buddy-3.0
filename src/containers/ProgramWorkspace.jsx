@@ -6,10 +6,19 @@ import ProgramMenu from '../components/Menus/ProgramMenu.jsx';
 import './css/ProgramWorkspace.css';
 
 class ProgramWorkspace extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDoubleClick = this.handleDoubleClick.bind(this);
+  }
+
+  handleDoubleClick(e) {
+    this.props.openMenuAction(e.nativeEvent);
+  }
+
   render() {
       return (
         <div className="program-workspace"
-          onDoubleClick={this.props.openMenuAction}>
+          onDoubleClick={this.handleDoubleClick}>
           <TrainingBlock />
         </div>
       )
