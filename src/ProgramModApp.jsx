@@ -33,7 +33,7 @@ class ProgramModApp extends Component {
     programMenu.style.display = 'block';
 
     window.onclick = (event) => {
-      if (event.target != programMenu ) {
+      if (event.target !== programMenu ) {
         programMenu.style.display = 'none';
       }
     }
