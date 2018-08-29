@@ -2,7 +2,7 @@
 	"programName": "Starting Strength",
 	"author": "Mark Rippetoe",
 	"sessions": [{
-			"week": 1,
+			"cycle": 1,
 			"day": 1,
 			"exerciseScheme": {
 				"Squat": {
@@ -83,7 +83,7 @@
 			}
 		},
 		{
-			"week": 1,
+			"cycle": 1,
 			"day": 3,
 			"exerciseScheme": {
 				"Squat": {
@@ -168,7 +168,7 @@
 			}
 		},
 		{
-			"week": 1,
+			"cycle": 1,
 			"day": 5,
 			"exerciseScheme": {
 				"Squat": {
@@ -249,7 +249,7 @@
 			}
 		},
 		{
-			"week": 2,
+			"cycle": 2,
 			"day": 8,
 			"exerciseScheme": {
 				"Squat": {
@@ -334,7 +334,7 @@
 			}
 		},
 		{
-			"week": 2,
+			"cycle": 2,
 			"day": 10,
 			"exerciseScheme": {
 				"Squat": {
@@ -415,8 +415,8 @@
 			}
 		},
 		{
-			"week": 2,
-			"day:": 12,
+			"cycle": 2,
+			"day": 12,
 			"exerciseScheme": {
 				"Squat": {
 					"set": [{
@@ -500,7 +500,7 @@
 			}
 		},
 		{
-			"week": 3,
+			"cycle": 3,
 			"day": 15,
 			"exerciseScheme": {
 				"Squat": {

@@ -10,6 +10,15 @@ class ProgramWorkspace extends Component {
   constructor(props) {
     super(props);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
+
+    this.state = {
+      program: this.props.program,
+      cycles: []
+    }
+  }
+
+  componentDidMount() {
+
   }
 
   handleDoubleClick(e) {
@@ -18,10 +27,13 @@ class ProgramWorkspace extends Component {
 
   render() {
     console.log(dummyProgram);
+    let sessionOne = this.state.program.sessions[0];
+    let sessionTwo = this.state.program.sessions[1];
+    let cycleOne = [sessionOne, sessionTwo];
       return (
         <div className="program-workspace"
           onDoubleClick={this.handleDoubleClick}>
-          <TrainingBlock />
+          <TrainingBlock cycle={cycleOne} />
         </div>
       )
   }

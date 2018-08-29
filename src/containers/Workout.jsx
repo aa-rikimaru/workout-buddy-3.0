@@ -4,7 +4,16 @@ import Exercise from './Exercise.jsx';
 import './css/Workout.css';
 
 class Workout extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      exercises: props.exerciseScheme,
+      day: props.day
+    }
+  }
   render() {
+    console.log(this.state.exercises);
     let exerciseOne = {
       name: "Barbell Squats",
       sets: 3,
@@ -22,7 +31,7 @@ class Workout extends Component {
     return (
       <div className="card workout-display">
         <div className="card-header">
-          Day 1 - Full Body
+          Day {this.state.day} - Full Body
         </div>
         <div className="list-group">
           <Exercise exercise={exerciseOne}/>
