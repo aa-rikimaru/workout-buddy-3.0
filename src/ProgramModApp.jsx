@@ -8,12 +8,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchExercises } from './actions/index';
 
+import dummyProgram from './sample_data/StartingStrength';
+
 class ProgramModApp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      exercises: []
+      exercises: [],
+      currentProgram : dummyProgram
     }
 
     this.openMenu = this.openMenu.bind(this);
@@ -41,11 +44,12 @@ class ProgramModApp extends Component {
 
   render() {
     if (!this.props.exercises) console.log(this.props.exercises);
+
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <h2>Program Name: {this.props.program.name}</h2>
+            <h2>Program Name: {this.state.currentProgram.programName}</h2>
           </div>
         </div>
         <div className="row">

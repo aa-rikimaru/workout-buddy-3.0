@@ -4,6 +4,7 @@ import Workout from './Workout.jsx';
 import './css/TrainingBlock.css';
 
 class TrainingBlock extends Component {
+
   render() {
     return (
       <Workout />

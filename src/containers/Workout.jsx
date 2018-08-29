@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Exercise from './Exercise.jsx';
+import './css/Workout.css';
 
 class Workout extends Component {
   render() {
@@ -17,10 +18,16 @@ class Workout extends Component {
       reps: 5,
       weight: 95
     }
+
     return (
-      <div className="list-group">
-        <Exercise exercise={exerciseOne}/>
-        <Exercise exercise={exerciseTwo}/>
+      <div className="card workout-display">
+        <div className="card-header">
+          Day 1 - Full Body
+        </div>
+        <div className="list-group">
+          <Exercise exercise={exerciseOne}/>
+          <Exercise exercise={exerciseTwo}/>
+        </div>
       </div>
     )
   }
