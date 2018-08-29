@@ -49,12 +49,12 @@ class ProgramModApp extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <h2>Program Name: {this.state.currentProgram.programName}</h2>
+            <h2>Program Name: {dummyProgram.programName}</h2>
           </div>
         </div>
         <div className="row">
           <div className="col-12" >
-            <ProgramWorkspace openMenuAction={this.openMenu}/>
+            <ProgramWorkspace openMenuAction={this.openMenu} program={dummyProgram}/>
           </div>
         </div>
         <ProgramMenu />
