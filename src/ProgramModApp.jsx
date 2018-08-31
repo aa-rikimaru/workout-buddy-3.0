@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ProgramMenu from './components/Menus/ProgramMenu.jsx';
 import ProgramWorkspace from './containers/ProgramWorkspace.jsx';
-import Input from './components/FormComponents/Input.jsx';
+import ProgramFormModal from './components/Modals/ProgramFormModal.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -32,8 +32,6 @@ class ProgramModApp extends Component {
   }
 
   programNameHandler(e) {
-    // let currentProgram = this.state.program;
-    // currentProgram.name = e.target.value;
     this.state.program.name = e.target.value;
     this.setState({ program: this.state.program});
   }
@@ -66,7 +64,7 @@ class ProgramModApp extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12">
+          <div className="col-10">
             <h2>
               <input
                 className="program-mod-input"
@@ -86,6 +84,12 @@ class ProgramModApp extends Component {
               />
             </h5>
           </div>
+          <div className="col-2">
+            <div id="program-button-group" className="list-group">
+              <ProgramFormModal modalButtonLabel="New" />
+              <button className="btn btn-primary">Save</button>
+            </div>
+          </div>
         </div>
         <div className="row">
           <div className="col-12" >
@@ -93,6 +97,7 @@ class ProgramModApp extends Component {
           </div>
         </div>
         <ProgramMenu />
+
       </div>
     );
   }

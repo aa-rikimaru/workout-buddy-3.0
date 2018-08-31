@@ -8,6 +8,8 @@ import TextArea from '../FormComponents/TextArea.jsx';
 
 import ProgramModApp from '../../ProgramModApp.jsx'
 
+import './css/ProgramFormModal.css';
+
 const FormModal = (props) => {
   const programLevels = ['Beginner', 'Intermediate', 'Advanced'];
 
@@ -16,8 +18,8 @@ const FormModal = (props) => {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Workout</h5>
-            <button type="button" className="close" data-dismiss="modal">
+            <h5 className="modal-title col-10">Workout</h5>
+            <button type="button" className="close col-2" data-dismiss="modal">
               <span>&times;</span>
             </button>
           </div>
@@ -50,13 +52,11 @@ class ProgramFormModal extends Component {
   constructor(props) {
     super(props);
 
-    let { user } = props;
-
     this.state = {
       programName: '',
       programLevel: 'Beginner',
       programDescription: '',
-      programAuthor: user.userName,
+      programAuthor: 'Aaron Lee',
     };
 
     this.goProgramModApp = this.goProgramModApp.bind(this);
@@ -101,14 +101,14 @@ class ProgramFormModal extends Component {
   render() {
     console.log(window);
     return (
-        <div>
+        <div id="program-form-container">
           <FormModal
             nameHandler={this.programNameHandler}
             levelHandler={this.programLevelHandler}
             descriptionHandler={this.programDescriptionHandler}
             submitHandler={this.goProgramModApp} />
           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#createWorkoutModal">
-            Create Workout
+            {this.props.modalButtonLabel}
           </button>
         </div>
     );
