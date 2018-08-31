@@ -16,3 +16,8 @@ body {
 	border-radius: 5px;
 	padding: 5px;
 }
+
+.program-mod-input:focus {
+	border-bottom: 1.5px solid #000;
+	width: 50%;
+}

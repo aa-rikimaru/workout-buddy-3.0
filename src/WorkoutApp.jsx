@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import LinkButton from './components/Buttons/LinkButton.jsx';
 import ProgramFormModal from './components/Modals/ProgramFormModal.jsx';
 
-class WorkoutApp extends React.Component {
+class WorkoutApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ class WorkoutApp extends React.Component {
       error: null,
       isLoaded: true,
       user: {
-        username: 'default',
+        userName: 'Aaron Lee',
         benchMax: 0,
         squatMax: 0,
         deadliftMax: 0,
@@ -34,13 +34,13 @@ class WorkoutApp extends React.Component {
             <h2>Welcome to Workout Buddy</h2>
           </div>
           <div className="row">
-            Username: {user.username} <br/>
+            Username: {user.userName} <br/>
             Bench: {user.benchMax} <br/>
             Squat: {user.squatMax} <br/>
             Deadlift: {user.deadliftMax} <br/>
           </div>
           <div className="row">
-            <ProgramFormModal />
+            <ProgramFormModal user={user}/>
           </div>
           <div className="row">
             <div className="btn-group-vertical app-menu">

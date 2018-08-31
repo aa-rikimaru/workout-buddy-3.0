@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ProgramMenu from './components/Menus/ProgramMenu.jsx';
 import ProgramWorkspace from './containers/ProgramWorkspace.jsx';
+import Input from './components/FormComponents/Input.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,16 +17,30 @@ class ProgramModApp extends Component {
 
     this.state = {
       exercises: [],
-      currentProgram : dummyProgram
+      program : dummyProgram
     }
 
     this.openMenu = this.openMenu.bind(this);
+    this.programNameHandler = this.programNameHandler.bind(this);
+    this.programAuthorHandler = this.programAuthorHandler.bind(this);
   }
 
   componentDidMount() {
     let exercises = this.props.fetchExercises().payload;
-    // This is equivalent to: this.setState({ exercises: exercise })
+    // This is equivalent to: this.setState({ exercises: exercises })
     this.setState({ exercises });
+  }
+
+  programNameHandler(e) {
+    // let currentProgram = this.state.program;
+    // currentProgram.name = e.target.value;
+    this.state.program.name = e.target.value;
+    this.setState({ program: this.state.program});
+  }
+
+  programAuthorHandler(e) {
+    this.state.program.author = e.target.value;
+    this.setState({ program: this.state.program });
   }
 
   openMenu(e) {
@@ -45,11 +60,31 @@ class ProgramModApp extends Component {
   render() {
     if (!this.props.exercises) console.log(this.props.exercises);
 
+    const { program } = this.state;
+    console.log('Program', program);
+
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <h2>Program Name: {dummyProgram.programName}</h2>
+            <h2>
+              <input
+                className="program-mod-input"
+                type="text"
+                placeholder="Program Name"
+                onChange={this.programNameHandler}
+                value={program.name}
+              />
+            </h2>
+            <h5>
+              <input
+                className="program-mod-input"
+                type="text"
+                placeholder="Author"
+                onChange={this.programAuthorHandler}
+                value={program.author}
+              />
+            </h5>
           </div>
         </div>
         <div className="row">

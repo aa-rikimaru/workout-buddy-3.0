@@ -13,6 +13,7 @@ class Exercise extends Component {
 
   render() {
     let { name, sets, reps, weight } = this.state.exercise;
+    console.log(this.state.exercise);
     return (
       <div className="list-group-item exercise-display">
         <input type="text"
