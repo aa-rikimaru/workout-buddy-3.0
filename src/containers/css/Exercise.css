@@ -1,0 +1,16 @@
+.exercise-display {
+  background-color: #FFF;
+  width: 250px;
+  padding: 10px;
+  margin: 10px auto 0 auto;
+  border-radius: 3px;
+  color: #000;
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  border-radius: 3px;
+  padding: 1px;
+  width: 70%;
+}

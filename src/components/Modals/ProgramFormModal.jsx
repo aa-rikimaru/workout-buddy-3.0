@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Dropdown from '../FormComponents/Dropdown.jsx';
 import Input from '../FormComponents/Input.jsx';
@@ -49,16 +50,23 @@ class ProgramFormModal extends Component {
   constructor(props) {
     super(props);
 
+    let { user } = props;
+
     this.state = {
       programName: '',
       programLevel: 'Beginner',
       programDescription: '',
-    }
+      programAuthor: user.userName,
+    };
 
     this.goProgramModApp = this.goProgramModApp.bind(this);
     this.programNameHandler = this.programNameHandler.bind(this);
     this.programLevelHandler = this.programLevelHandler.bind(this);
     this.programDescriptionHandler = this.programDescriptionHandler.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(window.location.pathname);
   }
 
   programNameHandler(event) {
@@ -74,13 +82,15 @@ class ProgramFormModal extends Component {
   }
 
   goProgramModApp() {
-    alert('Program Name: ' + this.state.programName + '\nProgram Level: ' + this.state.programLevel + '\nProgram Description: ' + this.state.programDescription);
-
     let programToCreate = {
       name: this.state.programName,
       level: this.state.programLevel,
       description: this.state.programDescription,
+      author: this.state.programAuthor
     };
+
+    window.location.pathname += 'program-mod';
+    console.log(window.location.pathname);
 
     ReactDOM.render(
       <ProgramModApp program={programToCreate} />,
@@ -89,6 +99,7 @@ class ProgramFormModal extends Component {
   };
 
   render() {
+    console.log(window);
     return (
         <div>
           <FormModal
