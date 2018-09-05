@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import LinkButton from './components/Buttons/LinkButton.jsx';
-import ProgramFormModal from './components/Modals/ProgramFormModal.jsx';
+import LinkButton from '../components/Buttons/LinkButton.jsx';
+import ProgramFormModal from './Modals/ProgramFormModal.jsx';
 
 class WorkoutApp extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class WorkoutApp extends Component {
             Deadlift: {user.deadliftMax} <br/>
           </div>
           <div className="row">
-            <ProgramFormModal user={user}/>
+            <ProgramFormModal modalButtonLabel="Create Workout"/>
           </div>
           <div className="row">
             <div className="btn-group-vertical app-menu">

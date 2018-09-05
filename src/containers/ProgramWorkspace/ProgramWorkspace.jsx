@@ -26,14 +26,15 @@ class ProgramWorkspace extends Component {
   }
 
   render() {
-    console.log(dummyProgram);
-    let sessionOne = this.state.program.sessions[0];
-    let sessionTwo = this.state.program.sessions[1];
-    let cycleOne = [sessionOne, sessionTwo];
+    // console.log(dummyProgram);
+    // let sessionOne = this.state.program.sessions[0];
+    // let sessionTwo = this.state.program.sessions[1];
+    // let cycleOne = [sessionOne, sessionTwo];
       return (
-        <div className="program-workspace"
+        <div
+          className="program-workspace"
           onDoubleClick={this.handleDoubleClick}>
-          <TrainingBlock cycle={cycleOne} />
+          <TrainingBlock /*cycle={cycleOne}*/ />
         </div>
       )
   }

@@ -13,7 +13,7 @@ class TrainingBlock extends Component {
   }
 
   render() {
-    console.log(this.state.workouts);
+    /*console.log(this.state.workouts);
     let names = ['Aaron', 'Benjamin', 'Chris'];
     const workoutsDisplay = this.state.workouts.map((workout) =>
       <Workout
@@ -22,10 +22,10 @@ class TrainingBlock extends Component {
         day = {workout.day}
       />
     );
-    console.log(workoutsDisplay);
+    console.log(workoutsDisplay);*/
     return (
       <div className="row training-block">
-        {workoutsDisplay}
+        {/* {workoutsDisplay} */}
       </div>
     )
   }

@@ -6,7 +6,9 @@ import Dropdown from '../FormComponents/Dropdown.jsx';
 import Input from '../FormComponents/Input.jsx';
 import TextArea from '../FormComponents/TextArea.jsx';
 
+import ProgramWorkspace from '../../containers/ProgramWorkspace.jsx';
 import ProgramModApp from '../../ProgramModApp.jsx'
+import { Provider } from 'react-redux';
 
 import './css/ProgramFormModal.css';
 
@@ -59,14 +61,13 @@ class ProgramFormModal extends Component {
       programAuthor: 'Aaron Lee',
     };
 
-    this.goProgramModApp = this.goProgramModApp.bind(this);
+    this.newProgramHandler = this.newProgramHandler.bind(this);
     this.programNameHandler = this.programNameHandler.bind(this);
     this.programLevelHandler = this.programLevelHandler.bind(this);
     this.programDescriptionHandler = this.programDescriptionHandler.bind(this);
   }
 
   componentDidMount() {
-    console.log(window.location.pathname);
   }
 
   programNameHandler(event) {
@@ -81,33 +82,40 @@ class ProgramFormModal extends Component {
     this.setState({ programDescription : event.target.value });
   }
 
-  goProgramModApp() {
-    let programToCreate = {
-      name: this.state.programName,
-      level: this.state.programLevel,
-      description: this.state.programDescription,
-      author: this.state.programAuthor
+  newProgramHandler() {
+
+    let {programName, programLevel, programDescription, programAuthor} = this.state;
+
+    let newProgram = {
+      name: programName,
+      level: programLevel,
+      description: programDescription,
+      author: programAuthor
     };
 
-    window.location.pathname += 'program-mod';
-    console.log(window.location.pathname);
+    console.log('newProgramHandler(): Rerendering...', newProgram);
 
     ReactDOM.render(
-      <ProgramModApp program={programToCreate} />,
+      <Provider store={createStoreWithMiddleWare(reducers)}>
+        <ProgramModApp program={newProgram} />
+      </Provider>,
       document.getElementById('root')
     );
-  };
+  }
 
   render() {
-    console.log(window);
     return (
         <div id="program-form-container">
           <FormModal
             nameHandler={this.programNameHandler}
             levelHandler={this.programLevelHandler}
             descriptionHandler={this.programDescriptionHandler}
-            submitHandler={this.goProgramModApp} />
-          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#createWorkoutModal">
+            submitHandler={this.newProgramHandler} />
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-toggle="modal"
+            data-target="#createWorkoutModal">
             {this.props.modalButtonLabel}
           </button>
         </div>

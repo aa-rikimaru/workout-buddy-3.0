@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ProgramMenu from './components/Menus/ProgramMenu.jsx';
-import ProgramWorkspace from './containers/ProgramWorkspace.jsx';
-import ProgramFormModal from './components/Modals/ProgramFormModal.jsx';
+import ProgramMenu from '../components/Menus/ProgramMenu.jsx';
+import ProgramWorkspace from './ProgramWorkspace/ProgramWorkspace.jsx';
+import ProgramFormModal from './Modals/ProgramFormModal.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchExercises } from './actions/index';
+import { fetchExercises } from '../actions/index';
+import { newProgram } from '../actions/index';
 
-import dummyProgram from './sample_data/StartingStrength';
+import dummyProgram from '../sample_data/StartingStrength';
 
 class ProgramModApp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = {,
       exercises: [],
-      program : dummyProgram
+      program : props.program
     }
 
     this.openMenu = this.openMenu.bind(this);
@@ -55,6 +56,8 @@ class ProgramModApp extends Component {
     }
   }
 
+
+
   render() {
     if (!this.props.exercises) console.log(this.props.exercises);
 
@@ -86,18 +89,19 @@ class ProgramModApp extends Component {
           </div>
           <div className="col-2">
             <div id="program-button-group" className="list-group">
-              <ProgramFormModal modalButtonLabel="New" />
+              <ProgramFormModal
+                modalButtonLabel="New"
+              />
               <button className="btn btn-primary">Save</button>
             </div>
           </div>
         </div>
         <div className="row">
-          <div className="col-12" >
-            <ProgramWorkspace openMenuAction={this.openMenu} program={dummyProgram}/>
+          <div className="col-12" id="program-workspace-container">
+            <ProgramWorkspace openMenuAction={this.openMenu}/>
           </div>
         </div>
         <ProgramMenu />
-
       </div>
     );
   }
@@ -118,11 +122,10 @@ ProgramModApp.defaultProps = {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchExercises }, dispatch);
+  return bindActionCreators({ fetchExercises, newProgram }, dispatch);
 }
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps: ', state);
   return {
       exercises: state.exercises
   }
