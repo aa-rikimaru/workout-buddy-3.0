@@ -2,18 +2,23 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Dropdown from '../FormComponents/Dropdown.jsx';
-import Input from '../FormComponents/Input.jsx';
-import TextArea from '../FormComponents/TextArea.jsx';
 
-import ProgramWorkspace from '../../containers/ProgramWorkspace.jsx';
-import ProgramModApp from '../../ProgramModApp.jsx'
-import { Provider } from 'react-redux';
+import Dropdown from '../../components/FormComponents/Dropdown.jsx';
+import Input from '../../components/FormComponents/Input.jsx';
+import TextArea from '../../components/FormComponents/TextArea.jsx';
+import ProgramWorkspace from '../ProgramWorkspace/ProgramWorkspace.jsx';
+import ProgramModApp from '../ProgramModApp.jsx'
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { newProgram } from '../../actions/index';
+
 
 import './css/ProgramFormModal.css';
 
 const FormModal = (props) => {
   const programLevels = ['Beginner', 'Intermediate', 'Advanced'];
+  const bingo = 'BINGO';
 
   return (
     <div className="modal fade" id="createWorkoutModal" tabIndex="-1">
@@ -66,10 +71,7 @@ class ProgramFormModal extends Component {
     this.programLevelHandler = this.programLevelHandler.bind(this);
     this.programDescriptionHandler = this.programDescriptionHandler.bind(this);
   }
-
-  componentDidMount() {
-  }
-
+  
   programNameHandler(event) {
     this.setState({ programName : event.target.value });
   }
@@ -93,14 +95,7 @@ class ProgramFormModal extends Component {
       author: programAuthor
     };
 
-    console.log('newProgramHandler(): Rerendering...', newProgram);
-
-    ReactDOM.render(
-      <Provider store={createStoreWithMiddleWare(reducers)}>
-        <ProgramModApp program={newProgram} />
-      </Provider>,
-      document.getElementById('root')
-    );
+    this.props.newProgram(newProgram);
   }
 
   render() {
@@ -137,4 +132,19 @@ FormModal.defaultProps = {
   submitHandler : () => {console.log("SubmitButton: No event handler given")},
 };
 
-export default ProgramFormModal;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ newProgram }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    program: state.program
+  };
+}
+
+// const ProgramFormModalContainer = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(ProgramFormModal);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramFormModal);

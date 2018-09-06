@@ -8,7 +8,6 @@ import ProgramFormModal from './Modals/ProgramFormModal.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchExercises } from '../actions/index';
-import { newProgram } from '../actions/index';
 
 import dummyProgram from '../sample_data/StartingStrength';
 
@@ -16,34 +15,17 @@ class ProgramModApp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {,
-      exercises: [],
-      program : props.program
-    }
-
     this.openMenu = this.openMenu.bind(this);
-    this.programNameHandler = this.programNameHandler.bind(this);
-    this.programAuthorHandler = this.programAuthorHandler.bind(this);
   }
 
   componentDidMount() {
-    let exercises = this.props.fetchExercises().payload;
-    // This is equivalent to: this.setState({ exercises: exercises })
-    this.setState({ exercises });
-  }
-
-  programNameHandler(e) {
-    this.state.program.name = e.target.value;
-    this.setState({ program: this.state.program});
-  }
-
-  programAuthorHandler(e) {
-    this.state.program.author = e.target.value;
-    this.setState({ program: this.state.program });
+    this.props.fetchExercises();
   }
 
   openMenu(e) {
     let programMenu = document.getElementById('program-menu');
+
+    console.log(this.props.program);
 
     programMenu.style.left = e.clientX + 'px';
     programMenu.style.top = e.clientY + 'px';
@@ -56,13 +38,9 @@ class ProgramModApp extends Component {
     }
   }
 
-
-
   render() {
-    if (!this.props.exercises) console.log(this.props.exercises);
 
-    const { program } = this.state;
-    console.log('Program', program);
+    const { program } = this.props;
 
     return (
       <div className="container-fluid">
@@ -73,7 +51,6 @@ class ProgramModApp extends Component {
                 className="program-mod-input"
                 type="text"
                 placeholder="Program Name"
-                onChange={this.programNameHandler}
                 value={program.name}
               />
             </h2>
@@ -82,7 +59,6 @@ class ProgramModApp extends Component {
                 className="program-mod-input"
                 type="text"
                 placeholder="Author"
-                onChange={this.programAuthorHandler}
                 value={program.author}
               />
             </h5>
@@ -122,12 +98,13 @@ ProgramModApp.defaultProps = {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchExercises, newProgram }, dispatch);
+  return bindActionCreators({ fetchExercises }, dispatch);
 }
 
 function mapStateToProps(state) {
   return {
-      exercises: state.exercises
+      exercises: state.exercises,
+      program: state.program
   }
 }
 

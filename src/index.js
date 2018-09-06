@@ -9,8 +9,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import WorkoutApp from './WorkoutApp';
-import ProgramModApp from './ProgramModApp';
+import WorkoutApp from './containers/WorkoutApp';
+import ProgramModApp from './containers/ProgramModApp';
 import reducers from './reducers';
 
 const createStoreWithMiddleWare = applyMiddleware(ReduxPromise, Logger)(createStore);
